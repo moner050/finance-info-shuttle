@@ -1,4 +1,4 @@
-package com.finance.info.shuttle.scrapping.common.enums;
+package com.finance.info.shuttle.scrapping.common.selenium.enums;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.ExpectedCondition;

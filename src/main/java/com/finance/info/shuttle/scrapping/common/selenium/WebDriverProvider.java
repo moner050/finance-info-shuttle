@@ -1,11 +1,9 @@
-package com.finance.info.shuttle.scrapping.common.driver;
+package com.finance.info.shuttle.scrapping.common.selenium.driver;
 
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.time.Duration;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
@@ -14,6 +12,11 @@ public class WebDriverProvider {
     private static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
+        return getDriver(true);
+    }
+
+    public static WebDriver getDriver(boolean headless) {
+        setDriver(headless);
         return WEB_DRIVER_THREAD_LOCAL.get();
     }
 
@@ -22,7 +25,7 @@ public class WebDriverProvider {
      * @param headless: 화면에 보여줄지 말지 결정
      * @return WebDriver
      */
-    public static void setDriver(boolean headless, Duration implicitWait) {
+    public static void setDriver(boolean headless) {
         WebDriver driver;
 
         chromedriver().setup();
@@ -36,7 +39,6 @@ public class WebDriverProvider {
         chromeOptions.addArguments("--allow-running-insecure-content");
         driver = new ChromeDriver(chromeOptions);
 
-        driver.manage().timeouts().implicitlyWait(implicitWait);
         driver.manage().window().maximize();
         WEB_DRIVER_THREAD_LOCAL.set(driver);
     }
