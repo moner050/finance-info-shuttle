@@ -1,21 +1,23 @@
-package com.finance.info.shuttle.scrapping.common.selenium.driver;
+package com.finance.info.shuttle.scrapping.common.selenium.utils;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
+@Slf4j
 public class WebDriverProvider {
 
-    private static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
+    private final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         return getDriver(true);
     }
 
-    public static WebDriver getDriver(boolean headless) {
+    public WebDriver getDriver(boolean headless) {
         setDriver(headless);
         return WEB_DRIVER_THREAD_LOCAL.get();
     }
@@ -25,7 +27,7 @@ public class WebDriverProvider {
      * @param headless: 화면에 보여줄지 말지 결정
      * @return WebDriver
      */
-    public static void setDriver(boolean headless) {
+    public void setDriver(boolean headless) {
         WebDriver driver;
 
         chromedriver().setup();
@@ -41,17 +43,24 @@ public class WebDriverProvider {
 
         driver.manage().window().maximize();
         WEB_DRIVER_THREAD_LOCAL.set(driver);
+
+        log.info("Chrome driver loaded");
     }
 
 
     /**
      * 현재 스레드에 할당된 WebDriver 인스턴스를 종료합니다.
      */
-    public static void quitDriver() {
+    public void closeDriver() {
         WebDriver driver = WEB_DRIVER_THREAD_LOCAL.get();
         if (driver != null) {
-            driver.quit();
+            driver.close();
             WEB_DRIVER_THREAD_LOCAL.remove();
+
+            log.info("Chrome driver close successfully");
+        }
+        else {
+            log.info("Chrome driver not loaded or already closed");
         }
     }
 
