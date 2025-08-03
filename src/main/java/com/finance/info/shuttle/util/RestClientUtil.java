@@ -8,6 +8,7 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class RestClientUtil {
      * @param <T>: return 타입
      */
     public <T> T get(String url, Map<String, String> headers, Class<T> responseType) {
-        RestClient.RequestHeadersSpec<?> requestSpec = restClient.get().uri(url);
+        RestClient.RequestHeadersSpec<?> requestSpec = restClient.get().uri(URI.create(url));
 
         // 헤더가 비어있지 않은 경우에만 헤더 추가
         requestSpec = addHeadersToRequest(requestSpec, headers);

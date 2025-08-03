@@ -59,41 +59,4 @@ public enum UrlConstant {
         return builder.encode(StandardCharsets.UTF_8).toUriString();
     }
 
-    // URL 빌더 (쿼리 파라미터 설정, 경로 파라미터 설정)
-    public UriComponentsBuilder getBuilder(Map<String, String> queryParams, String... pathParams) {
-        UriComponentsBuilder builder = fromHttpUrl(this.url);
-
-        if (pathParams != null && pathParams.length > 0) {
-            builder.pathSegment(pathParams);
-        }
-
-        if (queryParams != null && !queryParams.isEmpty()) {
-            queryParams.forEach(builder::queryParam);
-        }
-
-        return builder;
-    }
-
-    // 경로 파라미터만 있을 시 사용
-    public UriComponentsBuilder getBuilder(String... pathParams) {
-        UriComponentsBuilder builder = fromHttpUrl(this.url);
-
-        if (pathParams != null && pathParams.length > 0) {
-            builder.pathSegment(pathParams);
-        }
-
-        return builder;
-    }
-
-    // 쿼리 파라미터만 있을 시 사용.
-    public UriComponentsBuilder getBuilder(Map<String, String> queryParams) {
-        UriComponentsBuilder builder = fromHttpUrl(this.url);
-
-        if (queryParams != null && !queryParams.isEmpty()) {
-            queryParams.forEach(builder::queryParam);
-        }
-
-        return builder;
-    }
-
 }

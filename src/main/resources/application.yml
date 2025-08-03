@@ -1,3 +1,9 @@
 spring:
   application:
     name: shuttle
+
+# Naver API Configuration
+naver:
+  client:
+    id: Dt72CszKfSh5vaacXwNN
+    secret: yr5orUDnc8
