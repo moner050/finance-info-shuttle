@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/finance_shuttle
+    username: lmh0237
+    password: 1234qwer!
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    # Spring 에서는 DB 와 어플리케이션 연결을 위한 스레드를 미리 만들어두는데
+    # 해당 옵션을 true 로 하면 트랜잭션 종료 후 컨트롤러로 응답이 반환 될 때까지 스레드를 반납하지 않는다.
+    # pool 에 있는 스레드가 부족해져 성능 이슈가 있을 수 있기 때문에 false
+    open-in-view: false
+
+naver:
+  client:
+    id: Dt72CszKfSh5vaacXwNN
+    secret: yr5orUDnc8

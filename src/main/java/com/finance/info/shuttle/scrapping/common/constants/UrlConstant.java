@@ -9,7 +9,8 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
 public enum UrlConstant {
 
-    NAVER_API_BASE_URL("https://openapi.naver.com")
+    NAVER_API_BASE_URL("https://openapi.naver.com"),
+    HANKYUNG_RSS_BASE_URL("https://www.hankyung.com/feed")
     ;
 
     private final String url;

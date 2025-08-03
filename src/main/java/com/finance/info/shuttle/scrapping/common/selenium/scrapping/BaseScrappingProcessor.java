@@ -1,6 +1,8 @@
 package com.finance.info.shuttle.scrapping.common.selenium.scrapping;
 
+import com.finance.info.shuttle.scrapping.common.selenium.core.PageElementConfig;
 import com.finance.info.shuttle.scrapping.common.selenium.utils.WebDriverProvider;
+import com.finance.info.shuttle.scrapping.news.repository.NewsInfoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +12,22 @@ import java.util.Map;
 public abstract class BaseScrappingProcessor implements ScrappingProcessor {
 
     private final WebDriverProvider driverProvider;
+    private final NewsInfoRepository newsInfoRepository;
 
-    public BaseScrappingProcessor(final WebDriverProvider driverProvider) {
+    public BaseScrappingProcessor(final WebDriverProvider driverProvider, final NewsInfoRepository newsInfoRepository) {
         this.driverProvider = driverProvider;
+        this.newsInfoRepository = newsInfoRepository;
     }
+
+    protected NewsInfoRepository getNewsInfoRepository() {
+        return newsInfoRepository;
+    }
+
+    /**
+     * 페이지 설정 가져오기
+     */
+    protected abstract PageElementConfig getPageConfig();
+
 
     /**
      * 각종 스크래핑 로직들이 실제로 호출하는 로직

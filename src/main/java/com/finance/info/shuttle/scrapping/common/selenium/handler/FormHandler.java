@@ -405,8 +405,24 @@ public class FormHandler {
         return String.valueOf(paramObj);
     }
 
+    /**
+     * 현재 URL 가져오기
+     */
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
+    /**
+     * 선택한 요소 안의 텍스트 가져오기
+     */
+    public String getElementText(String elementKey) {
+        ElementLocator locator = pageConfig.getLocator(elementKey);
+        WebDriverUtils.waitForElementVisible(driver, locator, TIMEOUT_SECOND);
+
+        WebElement element = driver.findElement(locator.getBy());
+        return element.getText();
+    }
+
+
 
 }
