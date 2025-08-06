@@ -10,4 +10,7 @@ public interface NewsInfoRepository extends JpaRepository<NewsInfoEntity, Intege
 
     // 요약 내용이 Null 값이거나 비어있는 데이터 가져오기
     List<NewsInfoEntity> findByContentSimpleIsNull();
+
+    // 전체 내용이 Null 값이거나 비어있는 데이터 가져오기
+    List<NewsInfoEntity> findByContentDetailIsNull();
 }

@@ -18,9 +18,9 @@ import java.util.Map;
 
 @Slf4j
 @Component
-public class NewsScrappingProcessor extends BaseScrappingProcessor {
+public class NewsContentDetailScrappingProcessor extends BaseScrappingProcessor {
 
-    public NewsScrappingProcessor(WebDriverProvider driverProvider, NewsInfoRepository newsInfoRepository) {
+    public NewsContentDetailScrappingProcessor(WebDriverProvider driverProvider, NewsInfoRepository newsInfoRepository) {
         super(driverProvider, newsInfoRepository);
     }
 
@@ -41,7 +41,7 @@ public class NewsScrappingProcessor extends BaseScrappingProcessor {
             // DB 에서 Content Simple 이 비어있는 뉴스 데이터 추출
             NewsInfoRepository newsInfoRepository = getNewsInfoRepository();
 
-            List<NewsInfoEntity> emptyNewsContent = newsInfoRepository.findByContentSimpleIsNull();
+            List<NewsInfoEntity> emptyNewsContent = newsInfoRepository.findByContentDetailIsNull();
 
             log.info("비어있는 뉴스 컨텐츠 개수: " + emptyNewsContent.size());
 

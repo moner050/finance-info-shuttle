@@ -3,4 +3,4 @@ spring:
     name: shuttle
   config:
     import:
-      - classpath:application-local.yml
+      - classpath:application-prd.yml
