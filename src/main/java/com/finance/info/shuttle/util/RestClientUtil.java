@@ -82,6 +82,7 @@ public class RestClientUtil {
      * @return
      * @param <T>: return 타입
      */
+    @SuppressWarnings("unchecked")
     private <T extends RestClient.RequestHeadersSpec<?>> T addHeadersToRequest(T requestSpec, Map<String, String> headers) {
         // Optional을 사용하여 null 및 빈 맵 검사를 간결하게 처리
         return Optional.ofNullable(headers)

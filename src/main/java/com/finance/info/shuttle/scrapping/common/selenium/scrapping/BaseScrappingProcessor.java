@@ -14,7 +14,7 @@ public abstract class BaseScrappingProcessor implements ScrappingProcessor {
     private final WebDriverProvider driverProvider;
     private final NewsInfoRepository newsInfoRepository;
 
-    public BaseScrappingProcessor(final WebDriverProvider driverProvider, final NewsInfoRepository newsInfoRepository) {
+    public BaseScrappingProcessor(WebDriverProvider driverProvider, NewsInfoRepository newsInfoRepository) {
         this.driverProvider = driverProvider;
         this.newsInfoRepository = newsInfoRepository;
     }
@@ -47,7 +47,7 @@ public abstract class BaseScrappingProcessor implements ScrappingProcessor {
         WebDriver driver = null;
 
         try {
-            driver = driverProvider.getDriver(false);
+            driver = driverProvider.getDriver(true);
 
             if(driver == null) {
                 throw new RuntimeException("driver could not be found");

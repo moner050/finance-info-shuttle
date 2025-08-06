@@ -1,14 +1,15 @@
 package com.finance.info.shuttle.scrapping.common.selenium.utils;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.stereotype.Component;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
 @Slf4j
+@Component
 public class WebDriverProvider {
 
     private final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
@@ -39,9 +40,9 @@ public class WebDriverProvider {
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--disable-web-security");
         chromeOptions.addArguments("--allow-running-insecure-content");
+        chromeOptions.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(chromeOptions);
 
-        driver.manage().window().maximize();
         WEB_DRIVER_THREAD_LOCAL.set(driver);
 
         log.info("Chrome driver loaded");

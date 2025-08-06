@@ -9,5 +9,5 @@ public interface NewsInfoRepository extends JpaRepository<NewsInfoEntity, Intege
     boolean existsByLink(String link);
 
     // 요약 내용이 Null 값이거나 비어있는 데이터 가져오기
-    List<NewsInfoEntity> findByContentIsNullOrContentIsEmpty();
+    List<NewsInfoEntity> findByContentSimpleIsNull();
 }
